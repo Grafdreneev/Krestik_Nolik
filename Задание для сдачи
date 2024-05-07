@@ -1,0 +1,209 @@
+krestik_nolik = [
+     ("- 0 1 2"),
+     ("0 - - -"),
+     ("1 - - -"),
+     ("2 - - -")]
+print(*krestik_nolik, sep='\n')
+pobeda = 0
+nomer_stroka = 0
+nomer_stolbez = 0
+pervyi_igrok = input("Введите имя первого игрока: ")
+vtoroy_igrok = input("Введите имя второго игрока: ")
+def stroka_i_stolbez_1_igrok():
+     global nomer_stroka
+     global nomer_stolbez
+     global a1
+     global a2
+     global a3
+     global pervyi_igrok
+     global vtoroy_igrok
+     igrok_1_stroka = input(f"{pervyi_igrok}  вводит строку, где ставить крест - ")
+     nomer_stroka = int(igrok_1_stroka)
+     igrok_1_stolbez = input(f"{pervyi_igrok}  вводит столбец, где ставить крест - ")
+     nomer_stolbez = int(igrok_1_stolbez)
+     if nomer_stroka <= 2 and nomer_stolbez <= 2:
+          if nomer_stroka == 0:
+               if a1[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_1_igrok()
+          elif nomer_stroka == 1:
+               if a2[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_1_igrok()
+          elif nomer_stroka == 2:
+               if a3[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_1_igrok()
+          return nomer_stroka, nomer_stolbez
+     else:
+          print("вы ввели некорректное значение, повторите ввод.")
+          stroka_i_stolbez_1_igrok()
+def stroka_i_stolbez_2_igrok():
+     global nomer_stroka
+     global nomer_stolbez
+     global a1
+     global a2
+     global a3
+     global pervyi_igrok
+     global vtoroy_igrok
+     igrok_2_stroka = input(f"{vtoroy_igrok} игрок вводит строку, где ставить ноль - ")
+     nomer_stroka = int(igrok_2_stroka)
+     igrok_2_stolbez = input(f"{vtoroy_igrok} игрок вводит столбец, где ставить ноль - ")
+     nomer_stolbez = int(igrok_2_stolbez)
+     if nomer_stroka <= 2 and nomer_stolbez <= 2:
+          if nomer_stroka == 0:
+               if a1[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_2_igrok()
+          elif nomer_stroka == 1:
+               if a2[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_2_igrok()
+          elif nomer_stroka == 2:
+               if a3[nomer_stolbez + 1] == "-":
+                    True
+               else:
+                    print("Вы выбрали место, на котором уже стоит символ другого игрока")
+                    stroka_i_stolbez_2_igrok()
+          return nomer_stroka, nomer_stolbez
+     else:
+          print("вы ввели некорректное значение, повторите ввод.")
+          stroka_i_stolbez_2_igrok()
+def round_igry():
+     global krestik_nolik
+     global pobeda
+     global nomer_stolbez
+     global nomer_stroka
+     global a1
+     global a2
+     global a3
+     nolevaya_stroka = krestik_nolik[0]
+     pervaya_stroka = krestik_nolik[1]
+     vtoraya_stroka = krestik_nolik[2]
+     tretya_stroka = krestik_nolik[3]
+     a0 = nolevaya_stroka.split()
+     a1 = pervaya_stroka.split()
+     a2 = vtoraya_stroka.split()
+     a3 = tretya_stroka.split()
+     stroka_i_stolbez_1_igrok()
+     if nomer_stroka == 0:
+          a1[nomer_stolbez+1] = "x"
+     elif nomer_stroka == 1:
+          a2[nomer_stolbez+1] = "x"
+     elif nomer_stroka == 2:
+          a3[nomer_stolbez+1] = "x"
+
+     if a1[1] == a1[2] == a1[3] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a2[1] == a2[2] == a2[3] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a3[1] == a3[2] == a3[3] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] == a2[1] == a3[1] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[2] == a2[2] == a3[2] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[3] == a2[3] == a3[3] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] == a2[2] == a3[3] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[3] == a2[2] == a3[1] == "x":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] != "-" and a1[2] != "-" and a1[3] != "-"\
+             and a2[1] != "-" and a2[2] != "-" and a2[3] != "-" \
+             and a3[1] != "-" and a3[2] != "-" and a3[3] != "-" :
+          print("Игра окончена")
+          pobeda = 2
+     a0 = " ".join(a0)
+     a1 = " ".join(a1)
+     a2 = " ".join(a2)
+     a3 = " ".join(a3)
+     krestik_nolik.clear()
+     krestik_nolik = [a0, a1, a2, a3]
+     print("Игровое поле после хода первого выглядит так: ")
+     print(*krestik_nolik, sep='\n')
+     if pobeda == 1:
+          print("Победил первый игрок!")
+          return
+     elif pobeda == 2:
+          print("Ничья!")
+          return
+     nolevaya_stroka = krestik_nolik[0]
+     pervaya_stroka = krestik_nolik[1]
+     vtoraya_stroka = krestik_nolik[2]
+     tretya_stroka = krestik_nolik[3]
+     a0 = nolevaya_stroka.split()
+     a1 = pervaya_stroka.split()
+     a2 = vtoraya_stroka.split()
+     a3 = tretya_stroka.split()
+     stroka_i_stolbez_2_igrok()
+     if nomer_stroka == 0:
+          a1[nomer_stolbez + 1] = "0"
+     elif nomer_stroka == 1:
+          a2[nomer_stolbez + 1] = "0"
+     elif nomer_stroka == 2:
+          a3[nomer_stolbez + 1] = "0"
+
+     if a1[1] == a1[2] == a1[3] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a2[1] == a2[2] == a2[3] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a3[1] == a3[2] == a3[3] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] == a2[1] == a3[1] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[2] == a2[2] == a3[2] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[3] == a2[3] == a3[3] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] == a2[2] == a3[3] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[3] == a2[2] == a3[1] == "0":
+          print("Игра окончена")
+          pobeda = 1
+     elif a1[1] != "-" and a1[2] != "-" and a1[3] != "-" \
+             and a2[1] != "-" and a2[2] != "-" and a2[3] != "-" \
+             and a3[1] != "-" and a3[2] != "-" and a3[3] != "-":
+          print("Игра окончена")
+          pobeda = 2
+     a0 = " ".join(a0)
+     a1 = " ".join(a1)
+     a2 = " ".join(a2)
+     a3 = " ".join(a3)
+     krestik_nolik.clear()
+     krestik_nolik = [a0,a1,a2,a3]
+     print("Поле после хода игрока 2 выглядит так: ")
+     print(*krestik_nolik, sep='\n')
+     if pobeda == 1:
+          print("Победил второй игрок!")
+          return
+     elif pobeda == 2:
+          print("Ничья!")
+          return
+while pobeda == 0:
+     round_igry()
