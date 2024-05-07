@@ -141,7 +141,7 @@ def round_igry():
      print("Игровое поле после хода первого выглядит так: ")
      print(*krestik_nolik, sep='\n')
      if pobeda == 1:
-          print("Победил первый игрок!")
+          print(f"Победил {pervyi_igrok}!")
           return
      elif pobeda == 2:
           print("Ничья!")
@@ -200,10 +200,11 @@ def round_igry():
      print("Поле после хода игрока 2 выглядит так: ")
      print(*krestik_nolik, sep='\n')
      if pobeda == 1:
-          print("Победил второй игрок!")
+          print(f"Победил {vtoroy_igrok}!")
           return
      elif pobeda == 2:
           print("Ничья!")
           return
 while pobeda == 0:
      round_igry()
+
